@@ -38,7 +38,18 @@ var UIController = (function() {
 
 var controller = (function(bugetCtrl, UICtrl) {
 
-  var DOM = UICtrl.getDOMStrings();
+  var setupEventListener = function(){
+    var DOM = UICtrl.getDOMStrings();
+
+    document.querySelector(DOM.inputBtn).addEventListener('click', crtlAddItem);
+    document.addEventListener('keypress', function(e){
+      if (e.keyCode === 13 || e.witch === 13) {
+        crtlAddItem();
+      }
+    });
+  };
+
+
 
   var crtlAddItem = function(){
 
@@ -55,11 +66,14 @@ var controller = (function(bugetCtrl, UICtrl) {
 
   }
 
-  document.querySelector(DOM.inputBtn).addEventListener('click', crtlAddItem);
-  document.addEventListener('keypress', function(e){
-    if (e.keyCode === 13 || e.witch === 13) {
-      crtlAddItem();
+  return {
+    init : function(){
+      console.log("Started!");
+      setupEventListener();
     }
-  });
+  };
+
 
 })(budgetController, UIController);
+
+controller.init();
