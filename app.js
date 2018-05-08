@@ -70,7 +70,9 @@ var UIController = (function() {
     inputType : '.add_type',
     inputDescription : '.add_description',
     inputValue : '.add_value',
-    inputBtn : '.add_btn'
+    inputBtn : '.add_btn',
+    incomeContainer : '.income_list',
+    expenseContainer : '.expense_list'
   }
 
   return {
@@ -81,6 +83,28 @@ var UIController = (function() {
         value : document.querySelector(DOMStrings.inputValue).value
       }
     },
+    addListItem : function(obj, type){
+
+      var html, newHtml, element;
+
+      // create HTML strings with placeholder text
+      if (type === 'inc'){
+        html = '<div class="item clearfix" id="income-%id%"><div class="item_description">%description%</div><div class="right clearfix"><div class="item_value">%value%</div><div class="item_delete"><button class="item_delete_btn"><i class="ion-ios-close-outline"></i></button></div></div></div>';
+        element = DOMStrings.incomeContainer;
+      } else if (type === 'exp') {
+        html = '<div class="item clearfix" id="expense-%id%"><div class="item_description">%description%</div><div class="right clearfix"><div class="item_value">%value%</div><div class="item_percentage">66%</div><div class="item_delete"><button class="item_delete_btn"><i class="ion-ios-close-outline"></i></button></div></div></div>';
+        element = DOMStrings.expenseContainer;
+      }
+
+      // Replace the placeholder text with actual data
+      newHtml = html.replace('%id%', obj.id);
+      newHtml = newHtml.replace('%description%', obj.description);
+      newHtml = newHtml.replace('%value%', obj.value);
+
+      // Insert the HTML into the DOM
+      document.querySelector(element).insertAdjacentHTML('beforeend',newHtml);
+    },
+
     getDOMStrings : function(){
       return DOMStrings;
     }
@@ -116,6 +140,7 @@ var controller = (function(budgetCtrl, UICtrl) {
     newItem = budgetCtrl.addItem(input.type, input.description, input.value);
 
     //3. Add the item into the UI
+    UICtrl.addListItem(newItem, input.type);
 
     //4. Calculate the budget
 
