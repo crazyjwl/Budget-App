@@ -178,6 +178,10 @@ var UIController = (function() {
 
     },
 
+    deleteListItem : function(selectID) {
+      document.getElementById(selectID).parentNode.remove();
+    },
+
     displayBudget : function(obj){
       document.querySelector(DOMStrings.budgetLabel).textContent = obj.budget;
       document.querySelector(DOMStrings.incomeLabel).textContent = obj.totalInc;
@@ -256,10 +260,12 @@ var controller = (function(budgetCtrl, UICtrl) {
 
       // delete the item from data structure
       budgetCtrl.deleteItem(type, ID);
+
       // delete the item from the UI
-
+      UICtrl.deleteListItem(itemID);
+      
       // update and show the new budget
-
+      updateBudget();
     }
   };
 
