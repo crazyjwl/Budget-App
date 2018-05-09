@@ -246,8 +246,20 @@ var controller = (function(budgetCtrl, UICtrl) {
 
       //5. Calculate and update budget
       updateBudget();
+
+      //6. calculte and update percentage
+      updatePercentage();
     }
   };
+
+  var updatePercentage = function() {
+
+    // calculte percentage
+
+    // read percentage from the budget controller
+
+    // Update the UI with the new percentage
+  }
 
   var ctrlDeleteItem = function(e) {
     var itemID, splitID;
@@ -263,9 +275,12 @@ var controller = (function(budgetCtrl, UICtrl) {
 
       // delete the item from the UI
       UICtrl.deleteListItem(itemID);
-      
+
       // update and show the new budget
       updateBudget();
+
+      // calculte and update percentage
+      updatePercentage();
     }
   };
 
