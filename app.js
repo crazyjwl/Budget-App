@@ -2,7 +2,7 @@
 * BUDGET CONTROLLER
 **/
 var budgetController = (function() {
-
+  
   var Income = function(id, description, value){
     this.id = id;
     this.description = description;
@@ -62,7 +62,6 @@ var budgetController = (function() {
         ID = 0;
       }
 
-
       // create new item based on 'inc' or 'exp'
       if (type === 'inc') {
         newItem = new Income(ID, desc, val);
@@ -79,6 +78,7 @@ var budgetController = (function() {
 
     deleteItem : function(type, id) {
       var ids, index;
+      
       //id = 3
       //[1 2 3 6 8], index = 2
       ids = data.allItems[type].map(function(current) {
@@ -106,8 +106,6 @@ var budgetController = (function() {
       } else {
         data.percentage = -1;
       }
-
-
     },
 
     calculatePercentage : function(){
@@ -187,7 +185,6 @@ var UIController = (function() {
       }
     },
     addListItem : function(obj, type){
-
       var html, newHtml, element;
 
       // create HTML strings with placeholder text
@@ -262,7 +259,6 @@ var UIController = (function() {
       month = now.getMonth();
 
       document.querySelector(DOMStrings.dateLabel).textContent = months[month] + ' ' + year;
-
     },
 
     changedType : function() {
@@ -387,8 +383,6 @@ var controller = (function(budgetCtrl, UICtrl) {
       setupEventListener();
     }
   };
-
-
 })(budgetController, UIController);
 
 controller.init();
